@@ -7,9 +7,8 @@ box-sizing:border-box;
 body{
 font-family:Poppins, sans-serif;
 min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+display:grid;
+place-items:center;
 background:#070b14;
 color:white;
 padding:20px;
@@ -59,7 +58,6 @@ backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,.1);
 box-shadow:0 0 40px rgba(0,255,255,.15);
 text-align:center;
-margin:auto;
 }
 
 /* TITLE */
@@ -160,14 +158,9 @@ letter-spacing:1px;
 margin-top:4px;
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 
 @media (max-width:768px){
-
-body{
-align-items:flex-start;
-padding-top:60px;
-}
 
 .app{
 padding:30px 22px;
