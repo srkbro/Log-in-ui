@@ -3,48 +3,50 @@ const calculateBtn = document.getElementById("calculateBtn");
 
 const years = document.getElementById("years");
 const months = document.getElementById("months");
+const weeks = document.getElementById("weeks");
 const days = document.getElementById("days");
+const hours = document.getElementById("hours");
+const minutes = document.getElementById("minutes");
+const seconds = document.getElementById("seconds");
+
+let birthDate;
+let timer;
 
 function calculateAge(dob){
 
-let today = new Date();
-let birth = new Date(dob);
+birthDate = new Date(dob);
 
-let y = today.getFullYear() - birth.getFullYear();
-let m = today.getMonth() - birth.getMonth();
-let d = today.getDate() - birth.getDate();
+updateAge();
 
-if(d < 0){
-m--;
-d += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-}
+clearInterval(timer);
 
-if(m < 0){
-y--;
-m += 12;
-}
-
-animateNumber(years,y);
-animateNumber(months,m);
-animateNumber(days,d);
+timer = setInterval(updateAge,1000);
 
 }
 
-function animateNumber(element,value){
+function updateAge(){
 
-let start = 0;
+let now = new Date();
 
-let interval = setInterval(()=>{
+let diff = now - birthDate;
 
-element.innerText = start;
+let totalSeconds = Math.floor(diff / 1000);
+let totalMinutes = Math.floor(totalSeconds / 60);
+let totalHours = Math.floor(totalMinutes / 60);
+let totalDays = Math.floor(totalHours / 24);
+let totalWeeks = Math.floor(totalDays / 7);
 
-if(start >= value){
-clearInterval(interval)
-}
+let y = Math.floor(totalDays / 365.25);
+let m = Math.floor(totalDays / 30.44);
+let d = totalDays;
 
-start++;
-
-},20)
+years.innerText = y;
+months.innerText = m;
+weeks.innerText = totalWeeks;
+days.innerText = d;
+hours.innerText = totalHours;
+minutes.innerText = totalMinutes;
+seconds.innerText = totalSeconds;
 
 }
 
